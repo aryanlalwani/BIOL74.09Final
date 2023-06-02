@@ -1,7 +1,7 @@
 :Reference :Colbert and Pan 2002
 
 NEURON	{
-	SUFFIX nav11
+	SUFFIX nav11_T875M
 	USEION na READ ena WRITE ina
 	RANGE gbar, g, ina, vtha, vthi, vthis, qa, qi, qs
 	RANGE m, n, s, stau_scale, htau_scale 
@@ -21,12 +21,11 @@ PARAMETER	{
 	gbar = 0.2 (S/cm2)
 	vtha = -21.2 (mV) : v 1/2 for activation (m) - Table 1 Spampanato 2004 Nav1.1 channel
 	vthi = -39.7 (mV) : v 1/2 for inactivation (h)
-    :vthis = -46.1 (mV) : v 1/2 for slow inactivation (s) - 2004 paper 
-	vthis = -46.0 (mV) : v 1/2 for slow inactivation (s) - 2005 paper 
+	vthis = -61.6 (mV) : v 1/2 for slow inactivation (s) - 2005 paper 
 	qa = 4.9 (1) : activation slope
 	qi = 7.7 (1) : inactivation slope	    
-    :qs = 5.4 (1) : slow inactivation slow - 2004 paper
-	qs = 6.6 (1) : slow inactivation slow - 2005 paper
+	qs = 3.7 (1) : slow inactivation slope - 2004 paper
+	:qs = 6.6 (1) : slow inactivation slope - 2005 paper (wild type they used initially)
 	q10  = 2.3			: temperature sensitivity
     stau_scale = 1 (1) : scaling factor for slow inactivation (sTau)
     htau_scale = 1 (1) : scaling factor for fast inactivation (hTau)
@@ -49,7 +48,7 @@ ASSIGNED	{
 STATE	{
 	m
 	h
-    s
+    	s
 }
 
 BREAKPOINT	{
@@ -94,7 +93,7 @@ PROCEDURE rates(q10){
       v = v + 0.0001
     }
 	:sInf = 1/(1 + exp(((v-vShift) - vthis)/qs))
-	:sTau = stau_scale*1000*(106.7*exp(-0.5*(((v-vShift) - -52.7)/18.3)^2))/qt		
+	:sTau = stau_scale*1000*(106.7*exp(-0.5*(((v-vShift) - -89.7)/31.3)^2))/qt		
 	sInf = 1/(1+exp(((v-vShift) - vthis)/qs))		
 	sTau = stau_scale*1000*(140.4*exp(-0.5*((v+71.3)/30.9)^2))/qt
 	
