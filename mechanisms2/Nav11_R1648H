@@ -1,7 +1,7 @@
 :Reference :Colbert and Pan 2002
 
 NEURON	{
-	SUFFIX nav11
+	SUFFIX nav11_R1648H
 	USEION na READ ena WRITE ina
 	RANGE gbar, g, ina, vtha, vthi, vthis, qa, qi, qs
 	RANGE m, n, s, stau_scale, htau_scale 
@@ -25,8 +25,8 @@ PARAMETER	{
 	vthis = -46.0 (mV) : v 1/2 for slow inactivation (s) - 2005 paper 
 	qa = 4.9 (1) : activation slope
 	qi = 7.7 (1) : inactivation slope	    
-    	qs = 5.4 (1) : slow inactivation slow - 2004 paper
-     :qs = 6.6 (1) : slow inactivation slow - 2005 paper
+    :qs = 5.4 (1) : slow inactivation slow - 2004 paper
+	qs = 6.6 (1) : slow inactivation slow - 2005 paper
 	q10  = 2.3			: temperature sensitivity
     stau_scale = 1 (1) : scaling factor for slow inactivation (sTau)
     htau_scale = 1 (1) : scaling factor for fast inactivation (hTau)
@@ -88,7 +88,7 @@ PROCEDURE rates(q10){
     }		
 
 	hInf = 1/(1 + exp(((v-vShift) - vthi)/qi))
-	hTau = htau_scale*20.1*exp(-0.5*(((v-vShift) - -61.4)/32.7)^2)/qt		
+	hTau = htau_scale*11.8*exp(-0.5*(((v-vShift) - -57.4)/28.8)^2)/qt		
 
 	if (v-vShift == vthis){
       v = v + 0.0001
