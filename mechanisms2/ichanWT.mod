@@ -40,7 +40,7 @@ UNITS {
 
  
 NEURON { 
-    SUFFIX ichanWT2005 
+    SUFFIX ichanWT
     USEION nat READ enat WRITE inat VALENCE 1
     USEION kf READ ekf WRITE ikf  VALENCE 1
     NONSPECIFIC_CURRENT il 
